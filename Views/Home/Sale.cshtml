@@ -1,0 +1,47 @@
+﻿@model List<InternTask2.Models.Product>
+    @using Microsoft.AspNetCore.Identity
+    @using InternTask2.Models
+    @inject SignInManager<ApplicationUser> SignInManager
+    @inject UserManager<ApplicationUser> UserManager
+
+            @{
+    ViewData["Title"] = "Sale";
+            }
+
+            @section Styles {
+                <link rel="stylesheet" href="~/css/sale.css" />
+            }
+
+            <div class="sale-container">
+                <h1>🔥 Summer Sale - Up to 50% Off!</h1>
+                <div class="sale-grid">
+                    @foreach (var product in Model)
+        {
+                    <div class="sale-item">
+                        <img src="@product.ImageUrl" alt="@product.Name" />
+                        <h3>@product.Name</h3>
+                        <p class="old-price">$@Math.Round(product.Price * 2, 0)</p>
+                        <p class="new-price">$@product.Price</p>
+
+                        @if (SignInManager.IsSignedIn(User))
+                {
+                        <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                            <input type="hidden" name="productId" value="@product.Id" />
+                            <button type="submit">Add to Cart</button>
+                        </form>
+
+                }
+                else
+                {
+                        <a href="@Url.Action("Login", "Account", new { returnUrl = Url.Action("Sale", "Home") })">Login to Add to Cart</a>
+
+
+                }
+                    </div>
+        }
+                </div>
+            </div>
+
+
+
+

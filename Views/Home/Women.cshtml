@@ -1,0 +1,44 @@
+@model IEnumerable<InternTask2.Models.Product>
+    @using Microsoft.AspNetCore.Identity
+    @using InternTask2.Models
+    @inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> SignInManager
+
+
+        @{
+    ViewData["Title"] = "Women's Collection";
+        }
+
+        <section class="container py-5">
+            <h2 class="mb-4 text-center">Women's Collection</h2>
+            <div class="row g-4">
+                @foreach (var product in Model)
+        {
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <img src="@product.ImageUrl" class="uniform-img" alt="@product.Name" />
+                        <div class="card-body">
+                            <h5 class="card-title">@product.Name</h5>
+                            <p class="card-text">Price: $@product.Price</p>
+
+                            @if (SignInManager.IsSignedIn(User))
+                        {
+                            <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                                <input type="hidden" name="productId" value="@product.Id" />
+                                <button type="submit">Add to Cart</button>
+                            </form>
+
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Login", "Account", new { returnUrl = Url.Action("Women", "Home") })">Login to Add to Cart</a>
+
+
+                        }
+
+                        </div>
+                    </div>
+                </div>
+        }
+            </div>
+        </section>
+

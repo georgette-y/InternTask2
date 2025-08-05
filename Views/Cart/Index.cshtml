@@ -1,0 +1,56 @@
+@model List<InternTask2.Models.CartItem>
+    @using Microsoft.AspNetCore.Identity
+    @using InternTask2.Models
+    @inject SignInManager<ApplicationUser> SignInManager
+    @inject UserManager<ApplicationUser> UserManager
+
+
+            <h2>Your Cart</h2>
+
+            @if (!SignInManager.IsSignedIn(User))
+{
+            <p>You must <a asp-controller="Account" asp-action="Login">log in</a> to view or place an order.</p>
+}
+else if (!Model.Any())
+{
+            <p>Your cart is empty.</p>
+}
+else
+{
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>@item.Product.Name</td>
+                        <td>@item.Quantity</td>
+                        <td>$@item.Product.Price</td>
+                        <td>$@item.TotalPrice</td>
+                        <td>
+                            <form asp-controller="Cart" asp-action="RemoveFromCart" method="post">
+                                <input type="hidden" name="productId" value="@item.ProductId" />
+                                <button type="submit">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+            }
+                </tbody>
+            </table>
+
+            <p><strong>Total: $@Model.Sum(i => i.TotalPrice)</strong></p>
+
+            <form asp-controller="Cart" asp-action="Checkout" method="post">
+                <button type="submit">Checkout</button>
+            </form>
+}
+
+
