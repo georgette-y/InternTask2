@@ -4,6 +4,7 @@ using InternTask2.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InternTask2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250811195637_AddCartItems")]
+    partial class AddCartItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -370,96 +372,6 @@ namespace InternTask2.Migrations
                             ImageUrl = "/images/sale-shoe3.jpg",
                             Name = "Classic White",
                             Price = 55.00m
-                        },
-                        new
-                        {
-                            Id = 101,
-                            CategoryId = 1,
-                            Description = "Comfortable and stylish for everyday wear.",
-                            ImageUrl = "/images/card-item1.jpg",
-                            Name = "Sports men shoes",
-                            Price = 79.99m
-                        },
-                        new
-                        {
-                            Id = 102,
-                            CategoryId = 1,
-                            Description = "Perfect for gym and casual outings.",
-                            ImageUrl = "/images/card-item2.jpg",
-                            Name = "Sports men shoes",
-                            Price = 99.99m
-                        },
-                        new
-                        {
-                            Id = 103,
-                            CategoryId = 1,
-                            Description = "Ideal for formal occasions and office wear.",
-                            ImageUrl = "/images/card-item3.jpg",
-                            Name = "Sports men shoes",
-                            Price = 59.99m
-                        },
-                        new
-                        {
-                            Id = 104,
-                            CategoryId = 1,
-                            Description = "Durable and sleek, designed for city life",
-                            ImageUrl = "/images/card-item4.jpg",
-                            Name = "Sports men shoes",
-                            Price = 89.99m
-                        },
-                        new
-                        {
-                            Id = 105,
-                            CategoryId = 1,
-                            Description = "Perfect for running and staying cool on the move.",
-                            ImageUrl = "/images/card-item5.jpg",
-                            Name = "Sports men shoes",
-                            Price = 109.99m
-                        },
-                        new
-                        {
-                            Id = 106,
-                            CategoryId = 1,
-                            Description = "Supportive grip and ankle protection on the court.",
-                            ImageUrl = "/images/card-item6.jpg",
-                            Name = "Sports men shoes",
-                            Price = 49.99m
-                        },
-                        new
-                        {
-                            Id = 107,
-                            CategoryId = 1,
-                            Description = "Beautiful design for a chic everyday look.",
-                            ImageUrl = "/images/card-item7.jpg",
-                            Name = "Sports men shoes",
-                            Price = 79.99m
-                        },
-                        new
-                        {
-                            Id = 108,
-                            CategoryId = 1,
-                            Description = "Perfect heels for parties and events.",
-                            ImageUrl = "/images/card-item8.jpg",
-                            Name = "Sports men shoes",
-                            Price = 49.99m
-                        },
-                        new
-                        {
-                            Id = 109,
-                            CategoryId = 1,
-                            Description = "Great for casual wear and summer outings.",
-                            ImageUrl = "/images/card-item9.jpg",
-                            Name = "Sports men shoes",
-                            Price = 89.99m
-                        },
-                        new
-                        {
-                            Id = 110,
-                            CategoryId = 1,
-                            Description = "Chic and comfortable for all-day wear.",
-                            ImageUrl = "/images/card-item10.jpg",
-                            Name = "Sports men shoes",
-                            Price = 129.99m
                         });
                 });
 

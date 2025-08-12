@@ -13,6 +13,7 @@ namespace InternTask2.Models
 
         // Navigation property
         public Category Category { get; set; } = null!;
+
     }
 
 }

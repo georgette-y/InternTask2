@@ -42,7 +42,18 @@ namespace InternTask2.Data
                 new Product { Id = 12, Name = "Bold Training Sneakers", Price = 69.99M, ImageUrl = "/images/women-shoe-6.jpg", Description = "Power and confidence in every step.", CategoryId = 2 },
                 new Product { Id = 13, Name = "Red Sneakers", Price = 60.00M, ImageUrl = "/images/sale-shoe1.jpg", Description = "Hot summer sale red sneakers.", CategoryId = 3 },
                 new Product { Id = 14, Name = "Black Trainers", Price = 70.00M, ImageUrl = "/images/sale-shoe2.jpg", Description = "Black trainers discounted for summer.", CategoryId = 3 },
-                new Product { Id = 15, Name = "Classic White", Price = 55.00M, ImageUrl = "/images/sale-shoe3.jpg", Description = "Classic white shoes on sale.", CategoryId = 3 }
+                new Product { Id = 15, Name = "Classic White", Price = 55.00M, ImageUrl = "/images/sale-shoe3.jpg", Description = "Classic white shoes on sale.", CategoryId = 3 },
+                new Product { Id = 101, Name = "Sports men shoes", Price = 79.99M, ImageUrl = "/images/card-item1.jpg", Description = "Comfortable and stylish for everyday wear.", CategoryId = 1 },
+                new Product { Id = 102, Name = "Sports men shoes", Price = 99.99M, ImageUrl = "/images/card-item2.jpg", Description = "Perfect for gym and casual outings.", CategoryId = 1 },
+                new Product { Id = 103, Name = "Sports men shoes", Price = 59.99M, ImageUrl = "/images/card-item3.jpg", Description = "Ideal for formal occasions and office wear.", CategoryId = 1 },
+                new Product { Id = 104, Name = "Sports men shoes", Price = 89.99M, ImageUrl = "/images/card-item4.jpg", Description = "Durable and sleek, designed for city life", CategoryId = 1 },
+                new Product { Id = 105, Name = "Sports men shoes", Price = 109.99M, ImageUrl = "/images/card-item5.jpg", Description = "Perfect for running and staying cool on the move.", CategoryId = 1 },
+                new Product { Id = 106, Name = "Sports men shoes", Price = 49.99M, ImageUrl = "/images/card-item6.jpg", Description = "Supportive grip and ankle protection on the court.", CategoryId = 1 },
+
+                new Product { Id = 107, Name = "Sports men shoes", Price = 79.99M, ImageUrl = "/images/card-item7.jpg", Description = "Beautiful design for a chic everyday look.", CategoryId = 1 },
+                new Product { Id = 108, Name = "Sports men shoes", Price = 49.99M, ImageUrl = "/images/card-item8.jpg", Description = "Perfect heels for parties and events.", CategoryId = 1 },
+                new Product { Id = 109, Name = "Sports men shoes", Price = 89.99M, ImageUrl = "/images/card-item9.jpg", Description = "Great for casual wear and summer outings.", CategoryId = 1 },
+                new Product { Id = 110, Name = "Sports men shoes", Price = 129.99M, ImageUrl = "/images/card-item10.jpg", Description = "Chic and comfortable for all-day wear.", CategoryId = 1 }
             );
         }
     }

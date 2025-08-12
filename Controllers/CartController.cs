@@ -5,6 +5,8 @@ using InternTask2.Data;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace InternTask2.Controllers
 {
@@ -59,6 +61,7 @@ namespace InternTask2.Controllers
             if (existingItem != null)
             {
                 existingItem.Quantity++;
+                _context.CartItems.Update(existingItem);
             }
             else
             {
@@ -85,6 +88,30 @@ namespace InternTask2.Controllers
             if (item != null)
             {
                 _context.CartItems.Remove(item);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateQuantity(int productId, int quantity)
+        {
+            var userId = GetUserId();
+            var item = await _context.CartItems
+                .FirstOrDefaultAsync(c => c.UserId == userId && c.ProductId == productId);
+
+            if (item != null)
+            {
+                if (quantity > 0)
+                {
+                    item.Quantity = quantity;
+                    _context.CartItems.Update(item);
+                }
+                else
+                {
+                    _context.CartItems.Remove(item);
+                }
                 await _context.SaveChangesAsync();
             }
 

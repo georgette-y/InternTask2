@@ -64,7 +64,22 @@ namespace InternTask2.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var featuredProducts = _context.Products
+                .Where(p => p.Id >= 101 && p.Id <= 105)
+                .ToList();
+
+            var latestProducts = _context.Products
+                .Where(p => p.Id >= 106 && p.Id <= 110)
+                .ToList();
+
+
+            var model = new HomeIndexViewModel
+            {
+                FeaturedProducts = featuredProducts,
+                LatestProducts = latestProducts
+            };
+
+            return View(model);
         }
 
         public IActionResult Privacy()
@@ -94,6 +109,11 @@ namespace InternTask2.Controllers
             return View(saleProducts);
         }
 
+        public class HomeIndexViewModel
+        {
+            public List<Product> FeaturedProducts { get; set; }
+            public List<Product> LatestProducts { get; set; }
+        }
 
     }
 }

@@ -1,56 +1,62 @@
 @model List<InternTask2.Models.CartItem>
-    @using Microsoft.AspNetCore.Identity
-    @using InternTask2.Models
-    @inject SignInManager<ApplicationUser> SignInManager
-    @inject UserManager<ApplicationUser> UserManager
 
+@using InternTask2.Models
+@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> SignInManager
+@inject Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> UserManager
 
-            <h2>Your Cart</h2>
+<h2>Your Cart</h2>
 
-            @if (!SignInManager.IsSignedIn(User))
+@if (!SignInManager.IsSignedIn(User))
 {
-            <p>You must <a asp-controller="Account" asp-action="Login">log in</a> to view or place an order.</p>
+    <p>You must <a asp-controller="Account" asp-action="Login">log in</a> to view or place an order.</p>
 }
 else if (!Model.Any())
 {
-            <p>Your cart is empty.</p>
+    <p>Your cart is empty.</p>
 }
 else
 {
-            <table>
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>Total</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th style="width: 120px;">Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
             {
-                    <tr>
-                        <td>@item.Product.Name</td>
-                        <td>@item.Quantity</td>
-                        <td>$@item.Product.Price</td>
-                        <td>$@item.TotalPrice</td>
-                        <td>
-                            <form asp-controller="Cart" asp-action="RemoveFromCart" method="post">
-                                <input type="hidden" name="productId" value="@item.ProductId" />
-                                <button type="submit">Remove</button>
-                            </form>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>
+                        <form asp-controller="Cart" asp-action="UpdateQuantity" method="post" class="d-flex align-items-center">
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+                            <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control form-control-sm me-2" style="width:70px;" />
+                            <button type="submit" class="btn btn-sm btn-primary">Update</button>
+                        </form>
+                    </td>
+                    <td>$@item.Product.Price.ToString("F2")</td>
+                    <td>$@item.TotalPrice.ToString("F2")</td>
+                    <td>
+                        <form asp-controller="Cart" asp-action="RemoveFromCart" method="post">
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+                            <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                        </form>
+                    </td>
+                </tr>
             }
-                </tbody>
-            </table>
+        </tbody>
+    </table>
 
-            <p><strong>Total: $@Model.Sum(i => i.TotalPrice)</strong></p>
+    <p><strong>Total: $@Model.Sum(i => i.TotalPrice).ToString("F2")</strong></p>
 
-            <form asp-controller="Cart" asp-action="Checkout" method="post">
-                <button type="submit">Checkout</button>
-            </form>
+    <form asp-controller="Cart" asp-action="Checkout" method="post">
+        <button type="submit" class="btn btn-success">Checkout</button>
+    </form>
 }
+
 
 
